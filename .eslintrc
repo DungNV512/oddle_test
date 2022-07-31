@@ -1,0 +1,17 @@
+{
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "jsx-a11y/anchor-is-valid": "off",
+    "jsx-a11y/anchor-has-content": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "off",
+    "react/jsx-no-target-blank": "off",
+    "import/no-anonymous-default-export": [
+      "error",
+      {
+        "allowArrowFunction": true,
+        "allowObject": true
+      }
+    ]
+  }
+}
