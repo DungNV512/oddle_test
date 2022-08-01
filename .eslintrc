@@ -6,6 +6,7 @@
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "react/jsx-no-target-blank": "off",
+    "react/no-unescaped-entities": "off",
     "import/no-anonymous-default-export": [
       "error",
       {
