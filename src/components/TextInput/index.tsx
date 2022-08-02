@@ -1,14 +1,36 @@
-import { Autocomplete, TextField } from '@mui/material'
-import React from 'react'
+import ClearIcon from '@mui/icons-material/Clear'
+import SearchIcon from '@mui/icons-material/Search'
+import { IconButton, InputAdornment, TextField } from '@mui/material'
+import { ChangeEvent } from 'react'
 
-const TextInput = () => {
+interface Props {
+  value: string
+  onChange: (event: ChangeEvent<HTMLInputElement>) => void
+  onReset: () => void
+}
+
+const TextInput = (props: Props) => {
+  const { value, onChange, onReset } = props
   return (
     <div>
-      <Autocomplete
-        id="free-solo-demo"
-        freeSolo
-        options={[]}
-        renderInput={(params) => <TextField {...params} placeholder="Enter GitHub username, i.e. gaearon" />}
+      <TextField
+        fullWidth
+        value={value}
+        onChange={onChange}
+        placeholder="Enter GitHub username, i.e. gaearon"
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              {value ? (
+                <IconButton onClick={onReset}>
+                  <ClearIcon />
+                </IconButton>
+              ) : (
+                <SearchIcon />
+              )}
+            </InputAdornment>
+          ),
+        }}
       />
     </div>
   )

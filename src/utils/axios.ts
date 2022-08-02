@@ -9,7 +9,9 @@ const createService = (
   if (!skipInterceptorResponse) {
     instance.interceptors.response.use(
       (response) => response, // wrap response, error
-      (error) => error,
+      (error) => { 
+        return Promise.reject(error?.response)
+      },
     )
   }
   return instance

@@ -1,5 +1,5 @@
 const config = {
-  apiEndpoint: 'https://jsonplaceholder.typicode.com/',
+  apiEndpoint: 'https://api.github.com/',
   githubToken: ''
 }
 

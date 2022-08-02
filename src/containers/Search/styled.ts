@@ -13,3 +13,9 @@ export const StyledEmpty = styled.div`
   height: calc(100% - 56px);
   margin: 0 auto;
 `
+
+export const StyledContentWrapper = styled.div`
+  height: calc(100% - 186px);
+  margin: 0 auto;
+  overflow-y: auto;
+`
