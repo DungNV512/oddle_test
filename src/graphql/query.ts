@@ -7,7 +7,13 @@ export const SEARCH_USERS = gql`
     $after: String
     $before: String
   ) {
-    search(type: USER, query: $query, first: $first, after: $after, before: $before) {
+    search(
+      type: USER
+      query: $query
+      first: $first
+      after: $after
+      before: $before
+    ) {
       userCount
       pageInfo {
         endCursor
@@ -32,6 +38,35 @@ export const SEARCH_USERS = gql`
             }
           }
         }
+      }
+    }
+  }
+`
+
+export const GET_DETAIL_USER = gql`
+  query user($login: String!) {
+    user(login: $login) {
+      id
+      login
+      location
+      name
+      repositories(first: 20) {
+        totalCount
+        edges {
+          node {
+            ... on Repository {
+              name
+              stargazerCount
+              forkCount
+            }
+          }
+        }
+      }
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
       }
     }
   }

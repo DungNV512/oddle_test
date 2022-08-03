@@ -68,14 +68,14 @@ const SearchContainer = () => {
     const isEnablePagination =
       _get(data, 'search.pageInfo.hasNextPage') ||
       _get(data, 'search.pageInfo.hasPreviousPage')
-    const endCursor = _get(data, 'search.pageInfo.endCursor', '')
     if (loading)
       return (
         <StyledLoading>
           <div className="spinner"></div>
         </StyledLoading>
       )
-    if (!total || searchKey === '') return <Empty searchKey={searchKey} />
+    if (!total || searchKey === '')
+      return <Empty searchKey={searchKey} error={!!error?.message} />
     return (
       <>
         {total > 0 ? (

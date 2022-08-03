@@ -1,17 +1,31 @@
-import React, { useCallback } from 'react'
-import LogoGithub from 'assets/logo-github.svg'
-import LogoGithubMark from 'assets/logo-github-mark.svg'
-import { StyledEmpty } from './styled'
-import { Typography } from '@mui/material'
+import ErrorOutlineIcon from '@mui/icons-material/ErrorOutline'
 import SearchIcon from '@mui/icons-material/Search'
+import { Typography } from '@mui/material'
+import { useCallback } from 'react'
+
+import LogoGithubMark from 'assets/logo-github-mark.svg'
+import LogoGithub from 'assets/logo-github.svg'
+
+import { StyledEmpty } from './styled'
 
 interface Props {
   searchKey?: string
+  error: boolean
 }
 
 const Empty = (props: Props) => {
-  const { searchKey } = props
+  const { searchKey, error = false } = props
   const renderContent = useCallback(() => {
+    if (error) {
+      return (
+        <>
+          <ErrorOutlineIcon fontSize="large" color="error" />
+          <Typography variant="h6" align="center">
+            Something went wrong
+          </Typography>
+        </>
+      )
+    }
     if (searchKey) {
       return (
         <>
