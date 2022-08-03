@@ -15,7 +15,7 @@ export const StyledEmpty = styled.div`
 `
 
 export const StyledContentWrapper = styled.div`
-  height: calc(100% - 186px);
+  height: calc(100% - 160px);
   margin: 0 auto;
   overflow-y: auto;
 `
