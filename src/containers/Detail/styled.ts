@@ -6,4 +6,5 @@ export const StyledDetailContainer = styled.div`
 
 export const StyledAddressWrapper = styled.div`
   display: flex;
+  align-items: center;
 `

@@ -78,13 +78,15 @@ const DetailContainer = () => {
           {data?.user?.name ? (
             <Typography variant="h5">{data?.user?.name}</Typography>
           ) : null}
-          <Typography variant="body2" color="GrayText">
+          <Typography variant="body2" color="text.secondary">
             {data?.user?.login}
           </Typography>
-          {data?.user?.address ? (
+          {data?.user?.location ? (
             <StyledAddressWrapper>
-              <ApartmentIcon color="disabled" />
-              <Typography>{data?.user?.address}</Typography>
+              <ApartmentIcon color="disabled" fontSize="small" />
+              <Typography variant="body2" color="text.secondary" marginLeft={1}>
+                {data?.user?.location}
+              </Typography>
             </StyledAddressWrapper>
           ) : null}
         </Box>
