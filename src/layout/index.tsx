@@ -1,6 +1,7 @@
 import Footer from 'components/Footer'
 import Header from 'components/Header'
 import LoadingContainer from 'containers/Loading'
+import Head from 'next/head'
 import React, { ReactNode } from 'react'
 import { StyledContainer, StyledLayout } from './styled'
 
@@ -15,13 +16,17 @@ const Layout = (props: Props) => {
   const { children, title, logoEl, hiddenFooter = false } = props
   return (
     <StyledContainer>
-    <StyledLayout>
-      <LoadingContainer>
-        <Header title={title} logoEl={logoEl}/>
+      <Head>
+        <title>Oddle Test</title>
+        <meta name='description' content='Oddle Frontend Challenge' />
+      </Head>
+      <StyledLayout>
+        <LoadingContainer>
+          <Header title={title} logoEl={logoEl} />
           {children}
-        {hiddenFooter ? null : <Footer />}
-      </LoadingContainer>
-    </StyledLayout>
+          {hiddenFooter ? null : <Footer />}
+        </LoadingContainer>
+      </StyledLayout>
     </StyledContainer>
   )
 }

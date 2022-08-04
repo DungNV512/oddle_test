@@ -50,7 +50,26 @@ export const GET_DETAIL_USER = gql`
       login
       location
       name
-      repositories(first: 20) {
+      avatarUrl
+      repositories {
+        totalCount
+      }
+      followers {
+        totalCount
+      }
+      following {
+        totalCount
+      }
+    }
+  }
+`
+
+export const GET_USER_REPOSITORIES = gql`
+  query user_repositories($login: String!) {
+    user(login: $login) {
+      id
+      login
+      repositories(first: 100) {
         totalCount
         edges {
           node {
@@ -62,11 +81,51 @@ export const GET_DETAIL_USER = gql`
           }
         }
       }
-      followers {
+    }
+  }
+`
+
+export const GET_USER_FOLLOWERS = gql`
+  query user_followers($login: String!) {
+    user(login: $login) {
+      id
+      login
+      followers(first: 100) {
         totalCount
+        edges {
+          node {
+            ... on User {
+              id
+              login
+              location
+              name
+              avatarUrl
+            }
+          }
+        }
       }
-      following {
+    }
+  }
+`
+
+export const GET_USER_FOLLOWING = gql`
+  query user_followings($login: String!) {
+    user(login: $login) {
+      id
+      login
+      following(first: 100) {
         totalCount
+        edges {
+          node {
+            ... on User {
+              id
+              login
+              location
+              name
+              avatarUrl
+            }
+          }
+        }
       }
     }
   }
