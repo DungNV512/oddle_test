@@ -5,12 +5,12 @@ import {
   Box,
   Card as MuiCard,
   IconButton,
-  Typography
+  Typography,
 } from '@mui/material'
 import { red } from '@mui/material/colors'
 import _get from 'lodash/get'
 import Link from 'next/link'
-import { useMemo } from 'react'
+import { useMemo, MouseEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { selectIsFavorited } from 'selectors/favorite'
@@ -47,7 +47,8 @@ const UserCard = (props: Props) => {
     [info],
   )
 
-  const onToggleFavorite = () => {
+  const onToggleFavorite = (event: MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation()
     if (isFavorited) {
       dispatch(actions.removeFavorite(info.id))
     } else {
@@ -57,48 +58,51 @@ const UserCard = (props: Props) => {
 
   return (
     <StyledUserCard>
-      <MuiCard sx={{ borderRadius: '10px' }}>
-        <StyledUserCardButton>
-          <IconButton aria-label="settings" onClick={onToggleFavorite}>
-            {isFavorited ? (
-              <FavoriteIcon fontSize="small" htmlColor={red[500]} />
-            ) : (
-              <FavoriteBorderIcon fontSize="small" htmlColor={red[500]} />
-            )}
-          </IconButton>
-        </StyledUserCardButton>
-        <Box sx={{ display: 'flex', padding: '8px', alignItems: 'center' }}>
-          <Avatar
-            variant="rounded"
-            sx={{ bgcolor: red[500], width: 64, height: 64 }}
-            src={info.avatarUrl}
-          />
-          <Box sx={{ ml: 1.5, flex: 1 }}>
-            <Typography
-              variant="h6"
-              component="div"
-              sx={{ mb: 1.5 }}
-              fontSize={14}
-              className="user-card__name"
-              title={info.login}
-            >
-              <Link href={`/detail/${info.login}`}>
+      <Link href={`/detail/${info.login}`}>
+        <MuiCard
+          sx={{ borderRadius: '10px' }}
+          onClick={() => console.log('Hello')}
+        >
+          <StyledUserCardButton>
+            <IconButton aria-label="settings" onClick={onToggleFavorite}>
+              {isFavorited ? (
+                <FavoriteIcon fontSize="small" htmlColor={red[500]} />
+              ) : (
+                <FavoriteBorderIcon fontSize="small" htmlColor={red[500]} />
+              )}
+            </IconButton>
+          </StyledUserCardButton>
+          <Box sx={{ display: 'flex', padding: '8px', alignItems: 'center' }}>
+            <Avatar
+              variant="rounded"
+              sx={{ bgcolor: red[500], width: 64, height: 64 }}
+              src={info.avatarUrl}
+            />
+            <Box sx={{ ml: 1.5, flex: 1 }}>
+              <Typography
+                variant="h6"
+                component="div"
+                sx={{ mb: 1.5 }}
+                fontSize={14}
+                className="user-card__name"
+                title={info.login}
+              >
                 {info.login || 'Organization'}
-              </Link>
-            </Typography>
-            {totalFollowers > 0 ? (
-              <Typography color="text.secondary" fontSize={12}>
-                {`${abbreviateNumber(totalFollowers)} followers`}
               </Typography>
-            ) : null}
-            {totalFollowings > 0 ? (
-              <Typography color="text.secondary" fontSize={12}>
-                {`${abbreviateNumber(totalFollowings)} followings`}
-              </Typography>
-            ) : null}
+              {totalFollowers > 0 ? (
+                <Typography color="text.secondary" fontSize={12}>
+                  {`${abbreviateNumber(totalFollowers)} followers`}
+                </Typography>
+              ) : null}
+              {totalFollowings > 0 ? (
+                <Typography color="text.secondary" fontSize={12}>
+                  {`${abbreviateNumber(totalFollowings)} followings`}
+                </Typography>
+              ) : null}
+            </Box>
           </Box>
-        </Box>
-      </MuiCard>
+        </MuiCard>
+      </Link>
     </StyledUserCard>
   )
 }
