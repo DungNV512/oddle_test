@@ -16,7 +16,7 @@ Each aspect will have **basic** (required for submission) & **bonus** (optional)
 ---
 
 ## Demo
-[View demo](https://dungnv-oddle-test.netlify.app/)
+[View demo](https://dungnv-oddle-frontend-challenge.netlify.app/)
 
 ---
 
