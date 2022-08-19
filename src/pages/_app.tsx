@@ -8,7 +8,7 @@ import { setContext } from '@apollo/client/link/context'
 import type { AppProps } from 'next/app'
 import { Toaster } from 'react-hot-toast'
 import { Provider } from 'react-redux'
-
+import { useRouter } from 'next/router'
 import config from 'config'
 import { store } from 'store'
 
@@ -33,10 +33,11 @@ const client = new ApolloClient({
 })
 
 function MyApp({ Component, pageProps }: AppProps) {
+  const router = useRouter()
   return (
     <Provider store={store}>
       <ApolloProvider client={client}>
-        <Component {...pageProps} />
+        <Component key={router.asPath} {...pageProps} />
       </ApolloProvider>
       <Toaster position="bottom-center" />
     </Provider>

@@ -1,8 +1,9 @@
 import FavoriteContainer from 'containers/Favorite'
 import type { NextPage } from 'next'
+import Link from "next/link";
 
-const Favorite: NextPage = () => {
+const Liked: NextPage = () => {
   return <FavoriteContainer />
 }
 
-export default Favorite
+export default Liked

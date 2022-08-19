@@ -10,7 +10,7 @@ import {
 import { useRouter } from 'next/router'
 import { SyntheticEvent, useCallback, useState } from 'react'
 
-const ROUTES = ['/', '/favorite']
+const ROUTES = ['/', '/liked']
 
 const Navigation = styled((props: BottomNavigationProps) => (
   <BottomNavigation showLabels {...props}>
@@ -24,7 +24,6 @@ const Navigation = styled((props: BottomNavigationProps) => (
 const Footer = () => {
   const router = useRouter()
   const [value, setValue] = useState<number>(ROUTES.indexOf(router.asPath))
-
   const onChange = useCallback(
     (event: SyntheticEvent<Element, Event>, value: number) => {
       setValue(value)
